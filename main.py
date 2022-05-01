@@ -17,11 +17,11 @@ class Team:
         self.fitter = fitter
 
 
-f1 = Fitter("karen",[1,3,4,8], True, False)
+f1 = Fitter("karen",[2,3,4,8], True, False)
 f2 = Fitter("eye",[2,3,4,8], True, False)
 f3 = Fitter("dani",[2,3,8], True, False)
-f4 = Fitter("pika",[2,3,4,5], True, False)
-f5 = Fitter("man",[], True, False)
+f4 = Fitter("pika",[2,3,4], True, False)
+f5 = Fitter("man",[5], True, False)
 
 t1 = Team("team1", [8], [])
 t2 = Team("team2", [2], [])
@@ -104,8 +104,6 @@ def rotate_arr(arr, n):
         arr[i] = d[i]
     return arr
 
-
-
 # function to check if there is duplicate in an array
 def check_duplicate(arr):
     # create a set
@@ -135,26 +133,44 @@ def get_first_item_to_arr(arr):
     return new_arr
 
 def try_combo(arr):
+    import itertools
+    new_arr = []
+    '''
     count = len(arr)
     new_arr = []
-    # loop through all the stations
-    if [None] in arr:
+    
+    if [None] in arr: # if there is a None in the array
         return "Shiet"
+    # loop through all the stations
     for k in range(len(arr)):
-        new_arr.append([None])
-    for i in range(len(new_arr)):
-        # loop through all the elements in element i
-       
-         for j in range(len(arr[i])):
-             # check if the element is not in the new_arr
-            if arr[i][j] not in new_arr:
-                new_arr[i] = arr[i][j]
-
-
+        rotate_arr(arr[k], 1)  
+        # loop trough all the elements in the array
+        for i in range(len(arr[k])):
+            temp_list = get_first_item_to_arr(arr)      # get the first element of each sub array
+            if check_duplicate(temp_list) == False:     # if there is no duplicate
+                print(temp_list)
+            else:
+                rotate_arr(arr[k], 1)                    # rotate the array
+                print(temp_list)'''
+    count = 0
+    for combination in itertools.product(*arr):
+        if check_duplicate(combination) == False:     # if there is no duplicate                
+            new_arr.append(combination)
+            count += 1
     return new_arr
-test = try_combo(sort_comp)
-print(test)
+
+            
+        
 
 
+print(try_combo(sort_comp))
+import itertools
 
+a = [1]
+b = [2,3]
+c = [4,5,6]
 
+args = [a,b,c]
+print(args)
+for combination in itertools.product(*args):
+    print (combination)
