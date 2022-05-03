@@ -1,4 +1,5 @@
-class Fitter:
+# Class to make a fitter object
+class Fitter: 
     def __init__(self, name, competency, exception, present, placed):
         self.name = name
         self.competency = competency 
@@ -6,27 +7,29 @@ class Fitter:
         self.placed = placed ######## ATTRIBUTE NOT IN USE AND MAY NOT BE NEEDED ########
         self.exception = exception # e.g fitter injured and cannot be at specific stations, even tho they are present and got the competency
 
-# Class of objects called Team that contains teamname, station and fitter
+# Class to make a team object
 class Team:
     def __init__(self, teamname, station, fitter):
         self.teamname = teamname
         self.station = station # List of all the stations included in the team
         self.fitter = fitter # List of fitters belonging to a team
 
+fitters = []
+teams = []
 
+# Adding objects/fitters in testing purposes
 f1 = Fitter("karen",[2,3,4,8], [], True, False)
 f2 = Fitter("eye",[2,3,4,8], [], True, False)
 f3 = Fitter("dani",[2,3,8], [], True, False)
 f4 = Fitter("pika",[2,3,4], [], True, False)
 f5 = Fitter("man",[5], [], True, False)
 
+# Adding team/objects in testing purposes
 t1 = Team("team1", [8], [])
 t2 = Team("team2", [2], [])
 t3 = Team("team3", [3], [])
 t4 = Team("team4", [4,5], [])
 
-fitters = []
-teams = []
 
 teams.append(t1)
 teams.append(t2)
