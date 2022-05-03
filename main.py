@@ -1,27 +1,24 @@
-
-from xml.etree.ElementInclude import include
-
-
 class Fitter:
-    def __init__(self, name, competency, present, placed):
+    def __init__(self, name, competency, exception, present, placed):
         self.name = name
-        self.competency = competency
-        self.present = present
-        self.placed = placed
+        self.competency = competency 
+        self.present = present # e.g fitter sick, absent etc
+        self.placed = placed ######## ATTRIBUTE NOT IN USE AND MAY NOT BE NEEDED ########
+        self.exception = exception # e.g fitter injured and cannot be at specific stations, even tho they are present and got the competency
 
 # Class of objects called Team that contains teamname, station and fitter
 class Team:
     def __init__(self, teamname, station, fitter):
         self.teamname = teamname
-        self.station = station
-        self.fitter = fitter
+        self.station = station # List of all the stations included in the team
+        self.fitter = fitter # List of fitters belonging to a team
 
 
-f1 = Fitter("karen",[2,3,4,8], True, False)
-f2 = Fitter("eye",[2,3,4,8], True, False)
-f3 = Fitter("dani",[2,3,8], True, False)
-f4 = Fitter("pika",[2,3,4], True, False)
-f5 = Fitter("man",[5], True, False)
+f1 = Fitter("karen",[2,3,4,8], [], True, False)
+f2 = Fitter("eye",[2,3,4,8], [], True, False)
+f3 = Fitter("dani",[2,3,8], [], True, False)
+f4 = Fitter("pika",[2,3,4], [], True, False)
+f5 = Fitter("man",[5], [], True, False)
 
 t1 = Team("team1", [8], [])
 t2 = Team("team2", [2], [])
@@ -50,6 +47,8 @@ def get_stations(st):
 # append every element in each team.station to the stations list
 stations = []
 get_stations(stations)
+print("\n")
+print("Stations in a list: ")
 print(stations)
 
 # Add the all the object fitters in a loop
@@ -82,11 +81,13 @@ def nested_arr(st, arr):
     return arr
 sort_comp = []
 nested_arr(stations, sort_comp)
+print("Fitters in their respective group of competency of the stations in a nested list: ")
 print(sort_comp)
+print("\n")
  
 
 # function that rotates a array a given number of times
-def rotate_arr(arr, n):
+def rotate_arr(arr, n): # ################### FUNCTION ISNT USED AND MAY NOT BE NEEDED####################
     from collections import deque
     # create a deque
     d = deque()
@@ -119,7 +120,7 @@ def check_duplicate(arr):
         return True
 
 # function that returns every first sub element of a nested array
-def get_first_item_to_arr(arr):
+def get_first_item_to_arr(arr): ###################FUNCTION ISNT USED AND MAY NOT BE NEEDED####################
     # create a new array
     new_arr = []
     # loop through the array
@@ -132,10 +133,12 @@ def get_first_item_to_arr(arr):
             new_arr.append(arr[i][0])
     return new_arr
 
-def try_combo(arr):
+# function that returns every combination of sub element of a nested array
+def try_combo(arr): 
     import itertools
     new_arr = []
-    '''
+    ##################### COMMENTED CODE BELOW NOT DONE AND MAY NOT BE NEEDED #####################
+    ''' 
     count = len(arr)
     new_arr = []
     
@@ -159,18 +162,6 @@ def try_combo(arr):
             count += 1
     return new_arr
 
-            
-        
-
-
-print(try_combo(sort_comp))
-import itertools
-
-a = [1]
-b = [2,3]
-c = [4,5,6]
-
-args = [a,b,c]
-print(args)
-for combination in itertools.product(*args):
-    print (combination)
+combos = try_combo(sort_comp)
+print("All the combinations of fitters in a nested list: ")
+print(combos)
